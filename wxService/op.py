@@ -22,12 +22,15 @@ def login(*args, **kwargs):
     res = requests.get(
         url='https://api.weixin.qq.com/sns/jscode2session',
         params={
+            'component_access_token': '',
+            'component_appid': '',
             'appid': env.get('APPID'),
             'secret': env.get('APPSECRET'),
             'js_code': reqArgs.get('js_code'),
             'grant_type': 'authorization_code',
         }
     )
+    resJson = res.json()
     # print(res.json())
     # return {'openid': res.json().get('openid')}
-    resp(response_body(200, "Login", {'openid': res.json().get('openid'), 'current_timestamp': datetime.datetime.now().timestamp()}))
+    resp(response_body(200, "Login", {'openid': resJson.get('openid'), 'unionid': resJson.get('unionid'), 'current_timestamp': datetime.datetime.now().timestamp()}))

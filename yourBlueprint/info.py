@@ -11,4 +11,5 @@ env = os.environ
 @before
 def your_url(*args, **kwargs):
     print(*args)
+    reqArgs, reqJson = request.args, request.get_json(silent=True)
     resp(response_body(200, "YourUrl", {}))

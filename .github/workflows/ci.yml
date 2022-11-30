@@ -9,6 +9,7 @@ on:
 env:
   deploy-port: 6001
   docker-image-name: ${{ github.event.repository.name }}
+  WECHAT_PLATFORM_APPID: ${{ secrets.WECHAT_PLATFORM_APPID }}
   APPID: ${{ secrets.APPID }}
   APPSECRET: ${{ secrets.APPSECRET }}
 
@@ -18,8 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-      - name: Check APPID & APPSECRET for dev
+      - name: Check WECHAT_PLATFORM_APPID, APPID & APPSECRET for dev
         run:  |
+          echo "$WECHAT_PLATFORM_APPID"
           echo "$APPID"
           echo "$APPSECRET"
       -

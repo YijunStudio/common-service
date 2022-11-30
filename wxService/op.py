@@ -25,7 +25,7 @@ def login(*args, **kwargs):
             'component_access_token': '',
             'component_appid': '',
             'appid': env.get('APPID'),
-            'secret': env.get('APPSECRET'),
+            # 'secret': env.get('APPSECRET'),
             'js_code': reqArgs.get('js_code'),
             'grant_type': 'authorization_code',
         }
